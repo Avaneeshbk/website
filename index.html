@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaneesh's Personal Webpage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Barlow:ital@1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #E9F3D9;
+            font-family: 'Space Grotesk', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 1440px;
+            height: 1024px;
+            position: relative;
+        }
+        .profile-image {
+            position: absolute;
+            width: 208px;
+            height: 280px;
+            left: calc(50% - 208px/2);
+            top: 142px;
+            border-radius: 150px;
+            background: url('8b22c4b0-30d0-40ad-a37e-860de4fefabc.jpg') center/cover no-repeat;
+        }
+        h1 {
+            position: absolute;
+            width: 246px;
+            left: calc(50% - 246px/2);
+            top: 465px;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 32px;
+            text-align: center;
+            color: #000000;
+        }
+        .description {
+            position: absolute;
+            width: 952px;
+            left: calc(50% - 952px/2);
+            top: 540px;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 19px;
+            text-align: center;
+            color: #000000;
+        }
+        .social-links {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            width: 635.95px;
+            height: 30px;
+            left: calc(50% - 635.95px/2 - 0.37px);
+            top: 913px;
+        }
+        .social-link {
+            display: flex;
+            align-items: center;
+            font-family: 'Barlow', sans-serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 25px;
+            line-height: 30px;
+            color: #000000;
+            text-decoration: none;
+        }
+        .social-link::before {
+            content: '';
+            display: inline-block;
+            width: 26px;
+            height: 25px;
+            margin-right: 15px;
+            border: 2px solid #111111;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-image"></div>
+        <h1>Hey!! I am Avaneesh.</h1>
+        <p class="description">
+
