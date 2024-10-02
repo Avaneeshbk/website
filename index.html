@@ -8,27 +8,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* CSS Variables for easy theme switching */
-        :root {
+        :root, body {
             --bg-color: #E9F3D9;
             --text-color: #000000;
             --button-bg: #4CAF50;
             --button-text: #FFFFFF;
+            --invert-value: 0;
+        }
+        /* Ensure minimum height for html and body */
+        html, body {
+            min-height: 100%;
+            height: 100%;
         }
         /* Global styles */
-        body, html {
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
             font-family: 'Space Grotesk', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
         }
         /* Main container styles */
         .container {
+            flex: 1;
             width: 100%;
             max-width: 1440px;
-            min-height: 100vh;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
@@ -41,8 +48,8 @@
         /* Header styles */
         .header {
             text-align: center;
-            margin-bottom: 20px; /* Decreased by 10px from original 30px */
-            margin-top: 20px; /* Decreased by 10px from original 30px */
+            margin-bottom: 20px;
+            margin-top: 20px;
         }
         /* Content styles */
         .content {
@@ -50,7 +57,7 @@
             text-align: center;
             font-size: 16px;
             line-height: 1.6;
-            margin: 0 auto 38px; /* Added 8px to bottom margin */
+            margin: 0 auto 38px;
         }
         /* Social links container styles */
         .social-links {
@@ -110,14 +117,16 @@
             background: none;
             border: none;
             padding: 0;
+            z-index: 1000;
         }
         /* Theme toggle icon styles */
         #theme-toggle img {
             width: 100%;
             height: 100%;
+            filter: invert(var(--invert-value));
         }
         /* Dark theme styles */
-        .dark-theme {
+        :root.dark-theme, body.dark-theme {
             --bg-color: #1a1a1a;
             --text-color: #ffffff;
             --button-bg: #4CAF50;
@@ -128,7 +137,7 @@
         .profile-pic {
             width: 208px;
             height: 280px;
-            margin-top: 115px; /* Decreased by 10px from original 125px */
+            margin-top: 115px;
             border-radius: 150px;
             object-fit: cover;
         }
@@ -139,21 +148,32 @@
             }
             .content {
                 font-size: 14px;
+                line-height: 1.4;
             }
             .social-links {
                 gap: 20px;
             }
             .header {
-                margin-top: 20px; /* Decreased by 10px from original 30px */
+                margin-top: 20px;
             }
             .profile-pic {
-                margin-top: 115px; /* Decreased by 10px from original 125px */
+                margin-top: 115px;
+                width: 150px;
+                height: 200px;
+            }
+            #theme-toggle {
+                top: 10px;
+                right: 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Theme toggle button -->
+        <button id="theme-toggle">
+            <img src="src/dark theme.png" alt="Dark mode" id="theme-icon">
+        </button>
         <!-- Profile picture -->
         <img src="src/8b22c4b0-30d0-40ad-a37e-860de4fefabc.jpeg" alt="Avaneesh's profile picture" class="profile-pic">
         <!-- Header section -->
@@ -163,17 +183,12 @@
         
         <!-- Main content section -->
         <div class="content">
-            <p>Welcome to my personal space on the web. I'm a 17-year-old high school student passionate about technology.</p>
-            
-            <p>As an aspiring tech enthusiast, I've created DeepSprooce, a blog where I share my journey of discovery in the world of innovation. Here, you'll find insights, learnings, and discussions about the latest in tech.</p>
-            
-            <p>Though I'm new to blogging, my goal is to build a community where we can explore how technology is shaping our future.</p>
-            
-            <p>I invite you to join me on this exciting adventure. Browse through DeepSprooce, share your thoughts, and let's learn together.</p>
-            
-            <p>Thanks for visiting, and I hope you'll stick around for the tech journey ahead!</p>
-            
-            <p>Cheers, Avaneesh</p>
+            <p>Welcome to my personal space on the web. I'm a 17-year-old high school student passionate about technology.<br>
+            As an aspiring tech enthusiast, I've created DeepSprooce, a blog where I share my journey of discovery in the world of innovation. Here, you'll find insights, learnings, and discussions about the latest in tech.<br>
+            Though I'm new to blogging, my goal is to build a community where we can explore how technology is shaping our future.<br>
+            I invite you to join me on this exciting adventure. Browse through DeepSprooce, share your thoughts, and let's learn together.<br>
+            Thanks for visiting, and I hope you'll stick around for the tech journey ahead!</p>
+            <p><i>Cheers! Avaneesh.</i></p>
         </div>
         
         <!-- Social media links -->
@@ -189,10 +204,6 @@
             </a>
         </div>
     </div>
-    <!-- Theme toggle button -->
-    <button id="theme-toggle">
-        <img src="src/dark theme.png" alt="Dark mode" id="theme-icon">
-    </button>
 
     <script>
         // Get DOM elements
@@ -200,18 +211,54 @@
         const body = document.body;
         const themeIcon = document.getElementById('theme-icon');
 
-        // Add click event listener to theme toggle button
-        themeToggle.addEventListener('click', () => {
-            // Toggle dark theme class on body
-            body.classList.toggle('dark-theme');
-            // Update theme icon based on current theme
-            if (body.classList.contains('dark-theme')) {
+        // Function to set theme
+        function setTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark-theme');
+                document.body.classList.add('dark-theme');
                 themeIcon.src = 'src/light theme.png';
                 themeIcon.alt = 'Light mode';
             } else {
+                document.documentElement.classList.remove('dark-theme');
+                document.body.classList.remove('dark-theme');
                 themeIcon.src = 'src/dark theme.png';
                 themeIcon.alt = 'Dark mode';
             }
+            localStorage.setItem('darkTheme', isDark);
+        }
+
+        // Check for saved theme preference or system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkTheme');
+
+        if (savedTheme !== null) {
+            setTheme(savedTheme === 'true');
+        } else {
+            setTheme(prefersDark);
+        }
+
+        // Add click event listener to theme toggle button
+        themeToggle.addEventListener('click', () => {
+            setTheme(!body.classList.contains('dark-theme'));
+        });
+
+        // Listen for changes in system color scheme
+        window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
+            if (localStorage.getItem('darkTheme') === null) {
+                setTheme(e.matches);
+            }
+        });
+
+        // Ensure theme is applied correctly on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTheme(body.classList.contains('dark-theme'));
+        });
+
+        // Handle theme switching on orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                setTheme(body.classList.contains('dark-theme'));
+            }, 100);
         });
     </script>
 </body>
