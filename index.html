@@ -172,7 +172,7 @@
     <div class="container">
         <!-- Theme toggle button -->
         <button id="theme-toggle">
-            <img src="src/dark theme.png" alt="Dark mode" id="theme-icon">
+            <img src="src/dark theme1.png" alt="Dark mode" id="theme-icon">
         </button>
         <!-- Profile picture -->
         <img src="src/8b22c4b0-30d0-40ad-a37e-860de4fefabc.jpeg" alt="Avaneesh's profile picture" class="profile-pic">
@@ -216,12 +216,12 @@
             if (isDark) {
                 document.documentElement.classList.add('dark-theme');
                 document.body.classList.add('dark-theme');
-                themeIcon.src = 'src/light theme.png';
+                themeIcon.src = 'src/light theme1.png';
                 themeIcon.alt = 'Light mode';
             } else {
                 document.documentElement.classList.remove('dark-theme');
                 document.body.classList.remove('dark-theme');
-                themeIcon.src = 'src/dark theme.png';
+                themeIcon.src = 'src/dark theme1.png';
                 themeIcon.alt = 'Dark mode';
             }
             localStorage.setItem('darkTheme', isDark);
