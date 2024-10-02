@@ -3,91 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaneesh's Personal Webpage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Barlow:ital@1&display=swap" rel="stylesheet">
+    <title>Avaneesh's Personal Space</title>
+    <!-- Google Fonts import for Space Grotesk font -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        /* CSS Variables for easy theme switching */
+        :root {
+            --bg-color: #E9F3D9;
+            --text-color: #000000;
+            --button-bg: #4CAF50;
+            --button-text: #FFFFFF;
+        }
+        /* Global styles */
+        body, html {
             margin: 0;
             padding: 0;
-            background: #E9F3D9;
+            height: 100%;
             font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Main container styles */
+        .container {
+            width: 100%;
+            max-width: 1440px;
+            min-height: 100vh;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        .container {
-            width: 1440px;
-            height: 1024px;
+            justify-content: flex-start;
+            padding: 50px 20px;
+            box-sizing: border-box;
             position: relative;
         }
-        .profile-image {
-            position: absolute;
-            width: 208px;
-            height: 280px;
-            left: calc(50% - 208px/2);
-            top: 142px;
-            border-radius: 150px;
-            background: url('8b22c4b0-30d0-40ad-a37e-860de4fefabc.jpg') center/cover no-repeat;
-        }
-        h1 {
-            position: absolute;
-            width: 246px;
-            left: calc(50% - 246px/2);
-            top: 465px;
-            font-weight: 700;
-            font-size: 25px;
-            line-height: 32px;
+        /* Header styles */
+        .header {
             text-align: center;
-            color: #000000;
+            margin-bottom: 20px; /* Decreased by 10px from original 30px */
+            margin-top: 20px; /* Decreased by 10px from original 30px */
         }
-        .description {
-            position: absolute;
-            width: 952px;
-            left: calc(50% - 952px/2);
-            top: 540px;
-            font-weight: 500;
-            font-size: 15px;
-            line-height: 19px;
+        /* Content styles */
+        .content {
+            max-width: 952px;
             text-align: center;
-            color: #000000;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 auto 38px; /* Added 8px to bottom margin */
         }
+        /* Social links container styles */
         .social-links {
-            position: absolute;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 50px;
-            width: 635.95px;
-            height: 30px;
-            left: calc(50% - 635.95px/2 - 0.37px);
-            top: 913px;
+            gap: 30px;
+            font-size: 18px;
+            flex-wrap: wrap;
         }
+        /* Individual social link styles */
         .social-link {
             display: flex;
             align-items: center;
-            font-family: 'Barlow', sans-serif;
-            font-style: italic;
-            font-weight: 400;
-            font-size: 25px;
-            line-height: 30px;
-            color: #000000;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
             text-decoration: none;
+            color: var(--text-color);
+            border-radius: 50%;
+            transition: background-color 0.3s;
         }
-        .social-link::before {
-            content: '';
-            display: inline-block;
-            width: 26px;
-            height: 25px;
-            margin-right: 15px;
-            border: 2px solid #111111;
+        /* Hover effect for social links */
+        .social-link:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        /* Social link icon styles */
+        .social-link img {
+            width: 24px;
+            height: 24px;
+            filter: invert(var(--invert-value));
+            transition: filter 0.3s;
+        }
+        /* Button styles */
+        .button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        /* Button hover effect */
+        .button:hover {
+            background-color: #45a049;
+        }
+        /* Theme toggle button styles */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        /* Theme toggle icon styles */
+        #theme-toggle img {
+            width: 100%;
+            height: 100%;
+        }
+        /* Dark theme styles */
+        .dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --button-bg: #4CAF50;
+            --button-text: #FFFFFF;
+            --invert-value: 1;
+        }
+        /* Profile picture styles */
+        .profile-pic {
+            width: 208px;
+            height: 280px;
+            margin-top: 115px; /* Decreased by 10px from original 125px */
+            border-radius: 150px;
+            object-fit: cover;
+        }
+        /* Media query for responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+            .content {
+                font-size: 14px;
+            }
+            .social-links {
+                gap: 20px;
+            }
+            .header {
+                margin-top: 20px; /* Decreased by 10px from original 30px */
+            }
+            .profile-pic {
+                margin-top: 115px; /* Decreased by 10px from original 125px */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="profile-image"></div>
-        <h1>Hey!! I am Avaneesh.</h1>
-        <p class="description"> site is under construction </p>
+        <!-- Profile picture -->
+        <img src="src/8b22c4b0-30d0-40ad-a37e-860de4fefabc.jpeg" alt="Avaneesh's profile picture" class="profile-pic">
+        <!-- Header section -->
+        <div class="header">
+            <h1>Hey!! I am Avaneesh.</h1>
+        </div>
+        
+        <!-- Main content section -->
+        <div class="content">
+            <p>Welcome to my personal space on the web. I'm a 17-year-old high school student passionate about technology.</p>
+            
+            <p>As an aspiring tech enthusiast, I've created DeepSprooce, a blog where I share my journey of discovery in the world of innovation. Here, you'll find insights, learnings, and discussions about the latest in tech.</p>
+            
+            <p>Though I'm new to blogging, my goal is to build a community where we can explore how technology is shaping our future.</p>
+            
+            <p>I invite you to join me on this exciting adventure. Browse through DeepSprooce, share your thoughts, and let's learn together.</p>
+            
+            <p>Thanks for visiting, and I hope you'll stick around for the tech journey ahead!</p>
+            
+            <p>Cheers, Avaneesh</p>
+        </div>
+        
+        <!-- Social media links -->
+        <div class="social-links">
+            <a href="https://www.instagram.com/avaneesh_bk" class="social-link" target="_blank" rel="noopener noreferrer">
+                <img src="src/Instagram icon.png" alt="Instagram">
+            </a>
+            <a href="https://x.com/neon_disk" class="social-link" target="_blank" rel="noopener noreferrer">
+                <img src="src/Twitter icon.png" alt="Twitter">
+            </a>
+            <a href="https://deepsprooce.wordpress.com" class="social-link" target="_blank" rel="noopener noreferrer">
+                <img src="src/Blog icon.png" alt="Deepsprooce">
+            </a>
+        </div>
+    </div>
+    <!-- Theme toggle button -->
+    <button id="theme-toggle">
+        <img src="src/dark theme.png" alt="Dark mode" id="theme-icon">
+    </button>
 
+    <script>
+        // Get DOM elements
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const themeIcon = document.getElementById('theme-icon');
+
+        // Add click event listener to theme toggle button
+        themeToggle.addEventListener('click', () => {
+            // Toggle dark theme class on body
+            body.classList.toggle('dark-theme');
+            // Update theme icon based on current theme
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.src = 'src/light theme.png';
+                themeIcon.alt = 'Light mode';
+            } else {
+                themeIcon.src = 'src/dark theme.png';
+                themeIcon.alt = 'Dark mode';
+            }
+        });
+    </script>
+</body>
+</html>
